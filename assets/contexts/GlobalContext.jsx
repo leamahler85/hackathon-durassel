@@ -4,6 +4,13 @@ import UserContext from "../contexts/UserContext";
 
 const GlobalContext = ({ children }) => {
   const [user, setUser] = useState();
+
+  const generatorId = () => {
+    let number = Math.random();
+    number.toString(36);
+    let id = number.toString(36).substr(2, 9);
+    return id
+  }
   const initialList = [
     {
       id: "a",
@@ -49,7 +56,7 @@ const GlobalContext = ({ children }) => {
     setList([
       ...list,
       {
-        id: "z",
+        id: generatorId(),
         header: postTitle,
         text: postText,
         type: "PostIt",
@@ -66,7 +73,7 @@ const GlobalContext = ({ children }) => {
     setList([
       ...list,
       {
-        id: "y",
+        id: generatorId(),
         img_source: postTitle,
         text: postText,
         type: "image",
@@ -83,7 +90,7 @@ const GlobalContext = ({ children }) => {
     setList([
       ...list,
       {
-        id: "m",
+        id: generatorId(),
         link: postTitle,
         text: postText,
         type: "link",
@@ -100,7 +107,7 @@ const GlobalContext = ({ children }) => {
     setList([
       ...list,
       {
-        id: "f",
+        id: generatorId(),
         source: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
         text: postText,
         type: "video",
