@@ -8,21 +8,31 @@ function MyCreateVideoForm(props) {
   return (
     <Modal
       {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
       centered
-      className="p-3"
+      className='p-3'
     >
-      <Form onSubmit={handleSubmitVideo}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form onSubmit={handleSubmitVideo} className='p-4'>
+        <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
           <Form.Label>Video source</Form.Label>
-          <Form.Control type="text" placeholder="" value={postTitle} onChange={handleChangeTitle} />
+          <Form.Control
+            type='text'
+            placeholder=''
+            value={postTitle}
+            onChange={handleChangeTitle}
+          />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
           <Form.Label>Video description:</Form.Label>
-          <Form.Control as="textarea" rows={3} value={postText} onChange={handleChangeText} />
+          <Form.Control
+            as='textarea'
+            rows={3}
+            value={postText}
+            onChange={handleChangeText}
+          />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={props.onHide}>
+        <Button variant='primary' type='submit' onClick={props.onHide}>
           Add one video to the board !
         </Button>
       </Form>

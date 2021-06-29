@@ -8,23 +8,31 @@ function MyCreateLinkForm(props) {
   return (
     <Modal
       {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
       centered
-      className="p-3"
+      className='p-3'
     >
-      <Form onSubmit={handleSubmitLink}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form onSubmit={handleSubmitLink} className='p-4'>
+        <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
           <Form.Label>Link</Form.Label>
-          <Form.Control type="text" placeholder="add the url here" value={postTitle}
-            onChange={handleChangeTitle}/>
+          <Form.Control
+            type='text'
+            placeholder='add the url here'
+            value={postTitle}
+            onChange={handleChangeTitle}
+          />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
           <Form.Label>Link text</Form.Label>
-          <Form.Control type="text" placeholder="add the link message here"  value={postText}
-            onChange={handleChangeText}/>
+          <Form.Control
+            type='text'
+            placeholder='add the link message here'
+            value={postText}
+            onChange={handleChangeText}
+          />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={props.onHide}>
+        <Button variant='primary' type='submit' onClick={props.onHide}>
           Add One link to the board !
         </Button>
       </Form>

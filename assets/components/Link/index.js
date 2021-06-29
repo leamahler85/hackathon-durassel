@@ -15,11 +15,11 @@ export default function PostImg(props) {
         className='m-3'
       >
         <Container className='p-2'>
-          <Card.Text className='text-dark d-flex justify-content-between'>
+          <Card.Text className='text-dark d-flex justify-content-around p-3'>
             <a href={props.link || 'https://www.fiverr.com/'}>
               {props.text || 'Link to Fever ...'}
             </a>
-          <Button onClick={() => handleRemove(props.id)}>X</Button>
+            <Button className="mr-2" onClick={() => handleRemove(props.id)}>X</Button>
           </Card.Text>
         </Container>
       </Card>

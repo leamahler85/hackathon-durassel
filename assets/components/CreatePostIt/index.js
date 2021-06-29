@@ -11,9 +11,8 @@ function MyCreatePostItForm(props) {
       size='lg'
       aria-labelledby='contained-modal-title-vcenter'
       centered
-      className='p-3'
     >
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className='p-4'>
         <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
           <Form.Label>Post it header: </Form.Label>
           <Form.Control
