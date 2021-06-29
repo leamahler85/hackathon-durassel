@@ -76,7 +76,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/new/postIt", name="post_it_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, SerializerInterface $serializer): Response
+    public function newPostIt(Request $request, SerializerInterface $serializer): Response
     {
       $postIt = new PostIt();
       $form = json_decode($request->getContent());
@@ -92,7 +92,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/postIt/{id}/edit", name="post_it_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
+    public function editPostIt(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
     {
       $form = json_decode($request->getContent());
       $form->handleRequest($request);
@@ -105,7 +105,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/postIt/{id}/delete", name="post_it_delete", methods={"POST"})
      */
-    public function delete(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
+    public function deletePostIt(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
     {
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($postIt);
