@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import UserContext from '../contexts/UserContext';
 import { postLogin } from '../api/api';
+import { Container } from 'react-bootstrap';
 
 const Login = () => {
   const history = useHistory();
@@ -27,8 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className='formulaire'>
-      <Card className='form-container'>
+      <Container style={{width:'50%', marginTop:'30vh'}}>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group controlId='formBasicEmail'>
             <Form.Label>Email address</Form.Label>
@@ -55,8 +55,7 @@ const Login = () => {
             Submit
           </Button>
         </Form>
-      </Card>
-    </div>
+      </Container>
   );
 };
 
