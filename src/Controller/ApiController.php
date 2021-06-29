@@ -74,7 +74,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="post_it_new", methods={"GET", "POST"})
+     * @Route("/new/postIt", name="post_it_new", methods={"GET", "POST"})
      */
     public function new(Request $request, SerializerInterface $serializer): Response
     {
@@ -90,7 +90,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="post_it_edit", methods={"GET", "POST"})
+     * @Route("/postIt/{id}/edit", name="post_it_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
     {
@@ -103,7 +103,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_it_delete", methods={"POST"})
+     * @Route("/postIt/{id}/delete", name="post_it_delete", methods={"POST"})
      */
     public function delete(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
     {
