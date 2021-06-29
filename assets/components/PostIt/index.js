@@ -16,10 +16,15 @@ export default function PostIt(props) {
       >
         <Card.Header
           as='h5'
-          className='text-dark d-flex justify-content-between'
+          className='text-dark d-flex justify-content-between px-2'
         >
           {props.header}
-          <Button onClick={() => handleRemove(props.id)}>X</Button>
+          <Button
+            className='ml-2 w-25 h-25'
+            onClick={() => handleRemove(props.id)}
+          >
+            X
+          </Button>
         </Card.Header>
         <Card.Body>
           <Card.Text className='text-dark'>{props.text}</Card.Text>

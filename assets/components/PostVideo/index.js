@@ -23,9 +23,14 @@ export default function PostImg(props) {
           }
         />
         <Card.Body>
-          <Card.Text className='text-secondary d-flex justify-content-between'>
+          <Card.Text className='text-secondary d-flex justify-content-between mz-5'>
             {props.text || 'Some quick example.'}
-            <Button onClick={() => handleRemove(props.id)}>X</Button>
+            <Button
+              className='ml-2 w-25 h-25'
+              onClick={() => handleRemove(props.id)}
+            >
+              X
+            </Button>
           </Card.Text>
         </Card.Body>
       </Card>
