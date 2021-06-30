@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
         $customers = [];
         $freelance = [];
 
-        for ($i = 0; $i < 6; $i++)
+        for ($i = 0; $i < 3; $i++)
         {
             $customers[$i] = new User;
             $customers[$i]->setEmail($fakerUser->email());
@@ -35,7 +35,7 @@ class UserFixtures extends Fixture
             $manager->persist($customers[$i]);
         }
 
-        for ($i = 0; $i < 6; $i++)
+        for ($i = 0; $i < 3; $i++)
         {
             $freelance[$i] = new User;
             $freelance[$i]->setEmail($fakerUser->email());
