@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PostIt;
 use App\Entity\User;
 use App\Entity\Board;
 use App\Repository\BoardRepository;
@@ -9,9 +10,9 @@ use App\Repository\UserRepository;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -72,4 +73,44 @@ class ApiController extends AbstractController
       return new JsonResponse($serializer->serialize($boardRepository->findOneById($this->getUser()), 'json'), 200, [], true);
     }
 
+    /**
+     * @Route("/new/postIt", name="post_it_new", methods={"GET", "POST"})
+     */
+    public function newPostIt(Request $request, SerializerInterface $serializer): Response
+    {
+      $postIt = new PostIt();
+      $form = json_decode($request->getContent());
+      $form->handleRequest($request);
+
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($postIt);
+      $entityManager->flush();
+
+      return new JsonResponse($serializer->serialize($this->getUser(), 'json'), 200, [], true);
+    }
+
+    /**
+     * @Route("/postIt/{id}/edit", name="post_it_edit", methods={"GET", "POST"})
+     */
+    public function editPostIt(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
+    {
+      $form = json_decode($request->getContent());
+      $form->handleRequest($request);
+
+      $this->getDoctrine()->getManager()->flush();
+
+      return new JsonResponse($serializer->serialize($this->getUser(), 'json'), 200, [], true);
+    }
+
+    /**
+     * @Route("/postIt/{id}/delete", name="post_it_delete", methods={"POST"})
+     */
+    public function deletePostIt(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
+    {
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->remove($postIt);
+      $entityManager->flush();
+
+      return new JsonResponse($serializer->serialize($this->getUser(), 'json'), 200, [], true);
+    }
 }
