@@ -3,10 +3,19 @@ import React, { useRef, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import useDraggable from '../../hooks/useDraggable';
 
+import { deletePostIt } from '../../api/api';
+
+
 export default function PostImg(props) {
   const cardRef = useRef(null);
-   const { handleRemove } = useContext(UserContext);
+   const { refreshUser } = useContext(UserContext);
   useDraggable(cardRef);
+
+  const handleDelete = (id) => {
+    deletePostIt(id);
+    refreshUser();
+    console.log(id);
+  };
   return (
     <>
       <Card
@@ -26,7 +35,7 @@ export default function PostImg(props) {
             {props.text || 'Quick Description'}
             <Button
               className='r-4 w-25 h-25'
-              onClick={() => handleRemove(props.id)}
+              onClick={() => handleDelete(props.id)}
             >
               X
             </Button>

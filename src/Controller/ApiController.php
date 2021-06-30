@@ -112,10 +112,11 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/postIt/{id}/delete", name="post_it_delete", methods={"POST"})
+     * @Route("/postIt/{id}/delete", name="post_it_delete", methods={"DELETE"})
      */
     public function deletePostIt(Request $request, PostIt $postIt, SerializerInterface $serializer): Response
     {
+      
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($postIt);
       $entityManager->flush();

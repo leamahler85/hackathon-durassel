@@ -3,11 +3,19 @@ import React, { useRef, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import useDraggable from "../../hooks/useDraggable";
 
+import { deletePostIt } from '../../api/api';
+
+
 export default function PostImg(props) {
-  console.log(props)
   const linkRef = useRef(null);
-   const { handleRemove } = useContext(UserContext);
+   const { refreshUser } = useContext(UserContext);
   useDraggable(linkRef);
+
+  const handleDelete = (id) => {
+    deletePostIt(id);
+    refreshUser();
+    console.log(id);
+  };
   return (
     <>
       <Card
@@ -20,7 +28,7 @@ export default function PostImg(props) {
             <a href={props.post_it_header || 'https://www.fiverr.com/'}>
               {props.text || 'Link to Fever ...'}
             </a>
-            <Button className='ml-5' onClick={() => handleRemove(props.id)}>
+            <Button className='ml-5' onClick={() => handleDelete(props.id)}>
               X
             </Button>
           </Card.Text>

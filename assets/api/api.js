@@ -9,5 +9,7 @@ const postPostIt = async (values) => {
 const postLogin = async (values = null) => {
   return await axios.post('/api/login', values).then((res) => res.data);
 };
-
-export { postPostIt, postLogin };
+const deletePostIt = async (id) => {
+  return await axios.delete(`/api/postIt/${id}/delete`).then((res) => res.data);
+}
+export { postPostIt, postLogin, deletePostIt };
