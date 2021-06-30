@@ -17,7 +17,7 @@ class BoardFixtures extends Fixture implements DependentFixtureInterface
         $fakerBoard->seed('1234');
         $boards = [];
 
-        for ($i = 0; $i < 6; $i++)
+        for ($i = 0; $i < 3; $i++)
         {
             $boards[$i] = new Board;
             $boards[$i]->setName($fakerBoard->company());
