@@ -1,10 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import postit from "../../img/post-it.svg";
 import { Form, Button, Modal, Nav } from "react-bootstrap";
 
+import { postPostIt } from '../../api/api';
+
 function MyCreatePostItForm(props) {
-  const {postTitle, postText, handleChangeTitle, handleChangeText, handleSubmit } = useContext(UserContext);
+  const { refreshUser } = useContext(UserContext);
+
+  const [formData, setFormData] = useState({
+    header: "",
+    text: "",
+    type: "PostIt"
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await postPostIt(formData);
+    refreshUser();
+  }
+
   return (
     <Modal
       {...props}
@@ -18,8 +40,9 @@ function MyCreatePostItForm(props) {
           <Form.Control
             type='text'
             placeholder='Post it topic'
-            value={postTitle}
-            onChange={handleChangeTitle}
+            value={formData.header}
+            name='header'
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
@@ -27,8 +50,9 @@ function MyCreatePostItForm(props) {
           <Form.Control
             as='textarea'
             rows={3}
-            value={postText}
-            onChange={handleChangeText}
+            value={formData.text}
+            name='text'
+            onChange={handleChange}
           />
         </Form.Group>
         <Button variant='primary' type='submit' onClick={props.onHide}>

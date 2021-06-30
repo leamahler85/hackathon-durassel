@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserContext from "../contexts/UserContext";
+import {postPostIt, postLogin} from '../api/api'
 
 
 const GlobalContext = ({ children }) => {
@@ -16,7 +17,7 @@ const GlobalContext = ({ children }) => {
       id: "a",
       header: "Robin",
       text: "I'll be always here for you Batman",
-      type: "PostIt",
+      type: "postIt",
     },
     {
       id: "b",
@@ -53,13 +54,13 @@ const GlobalContext = ({ children }) => {
     setPostText(event.target.value);
   };
   const addArticle = () => {
-    setList([
+    postPostIt([
       ...list,
       {
         id: generatorId(),
         header: postTitle,
         text: postText,
-        type: "PostIt",
+        type: 'PostIt',
       },
     ]);
   };
@@ -69,6 +70,11 @@ const GlobalContext = ({ children }) => {
     setPostText(" ");
     event.preventDefault();
   };
+
+  const refreshUser = async () => {
+    setUser(await postLogin());
+  }
+
   const addImage = () => {
     setList([
       ...list,
@@ -125,6 +131,7 @@ const GlobalContext = ({ children }) => {
       value={{
         user,
         setUser,
+        refreshUser,
         initialList,
         list,
         setList,

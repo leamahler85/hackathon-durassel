@@ -10,7 +10,7 @@ use App\Repository\UserRepository;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,17 +76,26 @@ class ApiController extends AbstractController
     /**
      * @Route("/new/postIt", name="post_it_new", methods={"GET", "POST"})
      */
-    public function newPostIt(Request $request, SerializerInterface $serializer): Response
+    public function newPostIt(Request $request, SerializerInterface $serializer, BoardRepository $boardRepository): Response
     {
+      $data = json_decode($request->getContent());
+      $board = $this->getUser()->getBoard();
+      
       $postIt = new PostIt();
-      $form = json_decode($request->getContent());
-      $form->handleRequest($request);
+      $postIt
+        ->setPostItHeader($data->header)
+        ->setText($data->text)
+        ->setType($data->type)
+        ->setBoard($board);
 
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($postIt);
+
+      $board->addPostIt($postIt);
+
       $entityManager->flush();
 
-      return new JsonResponse($serializer->serialize($this->getUser(), 'json'), 200, [], true);
+      return new JsonResponse($serializer->serialize($postIt, 'json'), 200, [], true);
     }
 
     /**

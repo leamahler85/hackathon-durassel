@@ -18,7 +18,7 @@ export default function PostIt(props) {
           as='h5'
           className='text-dark d-flex justify-content-between px-2'
         >
-          {props.header}
+          {props.post_it_header}
           <Button
             className='ml-2 w-25 h-25'
             onClick={() => handleRemove(props.id)}

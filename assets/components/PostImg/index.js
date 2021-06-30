@@ -17,7 +17,7 @@ export default function PostImg(props) {
         <Card.Img
           variant='top'
           src={
-            props.img_source ||
+            props.post_it_header ||
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjD2cpLq8vMuVFW8dnth18kLS0lwMX6jQZzA&usqp=CAU'
           }
         />

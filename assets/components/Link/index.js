@@ -4,6 +4,7 @@ import UserContext from '../../contexts/UserContext';
 import useDraggable from "../../hooks/useDraggable";
 
 export default function PostImg(props) {
+  console.log(props)
   const linkRef = useRef(null);
    const { handleRemove } = useContext(UserContext);
   useDraggable(linkRef);
@@ -16,13 +17,10 @@ export default function PostImg(props) {
       >
         <Container className='p-2'>
           <Card.Text className='text-dark d-flex justify-content-around p-3 '>
-            <a href={props.link || 'https://www.fiverr.com/'}>
+            <a href={props.post_it_header || 'https://www.fiverr.com/'}>
               {props.text || 'Link to Fever ...'}
             </a>
-            <Button
-              className='ml-5'
-              onClick={() => handleRemove(props.id)}
-            >
+            <Button className='ml-5' onClick={() => handleRemove(props.id)}>
               X
             </Button>
           </Card.Text>

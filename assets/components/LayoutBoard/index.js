@@ -24,7 +24,7 @@ const LayoutBoard = () => {
         {user ? (
           <>
             <Navigation />
-            <Board list={list} />
+            <Board list={user.board.post_it} />
           </>
         ) : (
           <Login />
